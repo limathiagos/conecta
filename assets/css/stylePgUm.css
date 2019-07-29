@@ -14,7 +14,6 @@ body {
 }
 
 .fotoPerfil{
-    border-radius: 50%;
     width: 70%;
     height: 70%;
     border: #fff solid medium;
@@ -26,9 +25,9 @@ body {
 }
 
 .img-logo{
-    padding: 1%;
-    width: 20%;
-    margin-top: 0.5%;
+    padding: 20px;
+    width: 80%;
+    
 }
 
 .img-exit{
@@ -219,7 +218,7 @@ a.article, a.article:hover {
 #sidebarCollapse {
     width: 40px;
     height: 40px;
-    background: #f5f5f5;
+    background: #fff;
 }
 
 #sidebarCollapse span {
@@ -227,7 +226,7 @@ a.article, a.article:hover {
     height: 2px;
     margin: 0 auto;
     display: block;
-    background: #555;
+    background:#407dc6;
     transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
     transition-delay: 0.2s;
 }
