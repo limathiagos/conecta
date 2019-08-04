@@ -13,7 +13,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin(origins = "http://localhost:4200")
 public class PostagemController {
 
     private static final String NOT_FOUND = "Não foi encontrado uma postagem com o id: ";
@@ -21,42 +20,39 @@ public class PostagemController {
     @Autowired
     private PostagemRepository postagemRepository;
 
-    @GetMapping("/postagem")
-    public List<Postagem> getPostagem() {
+    @GetMapping("/postagens")
+    public List<Postagem> getAllPostagens() {
         return postagemRepository.findAll();
     }
-
-    @GetMapping("/postagem/{id}")
-    public ResponseEntity<Postagem> getPostagem(@PathVariable(value = "id") Long postagemId)
-            throws ResourceNotFoundException {
+    @GetMapping("/postagens/{id}")
+    public ResponseEntity<Postagem> getPostagensById(@PathVariable(value = "id") Long postagemId) {
         Postagem postagem = postagemRepository.findById(postagemId)
                 .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND + postagemId));
-        return ResponseEntity.ok().body(postagem);
-    }
+        return ResponseEntity.ok().body(postagem);}
 
-    @PostMapping("/postagem")
+
+    @PostMapping("/postagens")
     public Postagem createPostagem(@Valid @RequestBody Postagem postagem) {
         return postagemRepository.save(postagem);
     }
-    @PutMapping("/postagem/{id}")
+
+    @PutMapping("/postagens/{id}")
     public ResponseEntity<Postagem> updatePostagem(@PathVariable(value = "id") Long postagemId,
-                                                 @Valid @RequestBody Postagem postagemDetails) throws ResourceNotFoundException {
+                                                   @Valid @RequestBody Postagem postagemDetails) {
         Postagem postagem = postagemRepository.findById(postagemId)
                 .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND + postagemId));
-        postagem.setTp_publicacao(postagemDetails.getTp_publicacao());
-        postagem.setId_usuario_publicacao(postagemDetails.getId_usuario_publicacao());
-        postagem.setPublicacao(postagemDetails.getPublicacao());
-        postagem.setId_usuario_comentario(postagemDetails.getId_usuario_comentario());
-        postagem.setComentario(postagemDetails.getComentario());
-        final Postagem updatedPostagem = postagemRepository.save(postagem);
-        return ResponseEntity.ok(updatedPostagem);
+        postagem.setConteudo_postagem(postagemDetails.getConteudo_postagem());
+
+
+        final Postagem updatePostagem = postagemRepository.save(postagem);
+        return ResponseEntity.ok(updatePostagem);
     }
 
-    @DeleteMapping("/postagem/{id}")
-    public Map<String, Boolean> deletePostagem(@PathVariable(value = "id") Long postagemId)
-            throws ResourceNotFoundException {
+    @DeleteMapping("/postagens/{id}")
+    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long postagemId) {
         Postagem postagem = postagemRepository.findById(postagemId)
                 .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND + postagemId));
+
         postagemRepository.delete(postagem);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
