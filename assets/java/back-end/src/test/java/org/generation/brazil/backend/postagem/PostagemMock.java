@@ -9,7 +9,7 @@ public class PostagemMock {
     public static Postagem getPostagemMock() {
         Postagem postagem = new Postagem();
         Faker faker = new Faker(new Locale("pt-BR"));
-        postagem.setConteudo_postagem(faker.name().firstName());
+        postagem.setConteudoPostagem(faker.name().firstName());
         return postagem;
     }
 }

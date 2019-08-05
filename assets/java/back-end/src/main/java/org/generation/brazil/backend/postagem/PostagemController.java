@@ -41,7 +41,7 @@ public class PostagemController {
                                                    @Valid @RequestBody Postagem postagemDetails) {
         Postagem postagem = postagemRepository.findById(postagemId)
                 .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND + postagemId));
-        postagem.setConteudo_postagem(postagemDetails.getConteudo_postagem());
+        postagem.setConteudoPostagem(postagemDetails.getConteudoPostagem());
 
 
         final Postagem updatePostagem = postagemRepository.save(postagem);

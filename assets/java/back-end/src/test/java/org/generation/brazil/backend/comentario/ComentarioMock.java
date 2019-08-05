@@ -8,7 +8,7 @@ public class ComentarioMock {
     public static Comentario getComentarioMock() {
         Comentario comentario = new Comentario();
         Faker faker = new Faker(new Locale("pt-BR"));
-        comentario.setConteudo_comentario(faker.name().firstName());
+        comentario.setConteudoComentario(faker.name().firstName());
         return comentario;
     }
 }

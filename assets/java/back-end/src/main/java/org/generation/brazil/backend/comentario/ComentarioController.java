@@ -4,6 +4,7 @@ import org.generation.brazil.backend.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +39,9 @@ public class ComentarioController {
                                                        @Valid @RequestBody Comentario comentarioDetails) {
         Comentario comentario = comentarioRepository.findById(comentarioId)
                 .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND + comentarioId));
-        comentario.setConteudo_comentario(comentarioDetails.getConteudo_comentario());
+
+        comentario.setConteudoComentario(comentarioDetails.getConteudoComentario());
+
         final Comentario updateComentario = comentarioRepository.save(comentario);
         return ResponseEntity.ok(updateComentario);
     }
